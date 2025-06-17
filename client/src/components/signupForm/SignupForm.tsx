@@ -1,3 +1,4 @@
+import "./signupForm.css";
 import { useState } from "react";
 
 export default function SignupForm() {

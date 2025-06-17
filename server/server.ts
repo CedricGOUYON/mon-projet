@@ -3,7 +3,13 @@ import cors from "cors";
 import imageRoutes from "../server/src/routes/api";
 
 const app = express();
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
+
 app.use(express.json());
 
 app.use("/images", imageRoutes);

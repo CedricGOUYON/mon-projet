@@ -1,3 +1,4 @@
+import "./CardPage.css";
 import { useEffect, useState } from "react";
 import { getAllImages, addImage, deleteImage, getImageById } from "../../api/image";
 import type { Image } from "../../types/image";
@@ -60,7 +61,7 @@ export default function CardsPage() {
 
   return (
     <div className="cards-container">
-      <h1>Cartes d'Images</h1>
+      <h1>Les cartes</h1>
 
       <div className="form">
         <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Nom" />

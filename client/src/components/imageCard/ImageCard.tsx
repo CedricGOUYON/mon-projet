@@ -1,3 +1,4 @@
+import "./ImageCard.css";
 import type { Image } from "../../types/image";
 
 interface Props {

@@ -1,25 +1,32 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import * as imageAction from "./image/imageAction";
+import router from "./routes"; // Import de ton routeur global
 
 const app = express();
 const PORT = 3310;
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
-// GET all images
-app.get("/api/resources", async (req, res) => {
+// Routes images (tu peux garder celles-ci ou les déplacer dans routes/api)
+app.get("/api/resources", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const images = await imageAction.browse();
     res.json(images);
-  } catch {
-    res.status(500).json({ error: "Erreur serveur" });
+  } catch (err) {
+    console.error("Erreur GET /api/resources:", err);
+    next(err); // passe au middleware d'erreur
   }
 });
 
-// GET image by id
-app.get("/api/resources/:id", async (req, res) => {
+app.get("/api/resources/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = Number(req.params.id);
     if (isNaN(id)) return res.status(400).json({ error: "ID invalide" });
@@ -29,37 +36,47 @@ app.get("/api/resources/:id", async (req, res) => {
     if (!image) return res.status(404).json({ error: "Image non trouvée" });
 
     res.json(image);
-  } catch {
-    res.status(500).json({ error: "Erreur serveur" });
+  } catch (err) {
+    console.error(`Erreur GET /api/resources/${req.params.id}:`, err);
+    next(err);
   }
 });
 
-// POST add new image
-app.post("/api/resources", async (req, res) => {
+app.post("/api/resources", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { name, url } = req.body;
     if (!name || !url) return res.status(400).json({ error: "Données manquantes" });
 
     await imageAction.create({ name, url });
     res.status(201).json({ message: "Image ajoutée" });
-  } catch {
-    res.status(500).json({ error: "Erreur serveur" });
+  } catch (err) {
+    console.error("Erreur POST /api/resources:", err);
+    next(err);
   }
 });
 
-// DELETE image by id
-app.delete("/api/resources/:id", async (req, res) => {
+app.delete("/api/resources/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = Number(req.params.id);
     if (isNaN(id)) return res.status(400).json({ error: "ID invalide" });
 
     await imageAction.destroy(id);
     res.status(204).end();
-  } catch {
-    res.status(500).json({ error: "Erreur serveur" });
+  } catch (err) {
+    console.error(`Erreur DELETE /api/resources/${req.params.id}:`, err);
+    next(err);
   }
 });
 
+// Utilisation du routeur global pour toutes les routes /api/* non définies ci-dessus
+app.use("/api", router);
+
+// Middleware global de gestion des erreurs
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  console.error("💥 ERREUR SERVEUR:", err);
+  res.status(500).json({ error: "Erreur serveur interne" });
+});
+
 app.listen(PORT, () => {
-  console.log(`Backend lancé sur http://localhost:${PORT}`);
+  console.log(`🚀 Backend lancé sur http://localhost:${PORT}`);
 });

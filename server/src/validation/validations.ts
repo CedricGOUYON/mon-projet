@@ -6,10 +6,13 @@ export const userValidation = [
   body("password").isLength({ min: 6 }).withMessage("Le mot de passe doit contenir au moins 6 caractères"),
   body("firstName").notEmpty().withMessage("Le prénom est obligatoire"),
   body("lastName").notEmpty().withMessage("Le nom est obligatoire"),
+
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      // Transforme les erreurs en tableau simple de messages
+      const errorMessages = errors.array().map((err) => err.msg);
+      return res.status(400).json({ errors: errorMessages });
     }
     next();
   },
