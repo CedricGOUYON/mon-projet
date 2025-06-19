@@ -1,0 +1,17 @@
+footer {
+  padding: 1rem;
+  background-color: #f2f2f2;
+  top: 0;
+  left: 0;
+  width: 100%; /* Prend toute la largeur */
+  height: 5vh;
+  padding: 1rem;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optionnel : une ombre légère */
+  z-index: 1000; /* Reste au-dessus du contenu */
+
+  p {
+    color: teal;
+    margin: 0px;
+  }
+}

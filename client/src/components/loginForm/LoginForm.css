@@ -20,12 +20,12 @@
 }
 
 .login-form input:focus {
-  border-color: #007bff;
+  border-color: teal;
   outline: none;
 }
 
 .login-form button[type="submit"] {
-  background-color: #007bff;
+  background-color: teal;
   color: white;
   padding: 0.7rem;
   font-size: 1.1rem;
@@ -37,5 +37,5 @@
 }
 
 .login-form button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: teal;
 }

@@ -1,5 +1,7 @@
 import "./signupForm.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext"; // ⬅️ contexte auth
 
 export default function SignupForm() {
   const [firstName, setFirstName] = useState("");
@@ -8,6 +10,9 @@ export default function SignupForm() {
   const [password, setPassword] = useState("");
   const [responseMsg, setResponseMsg] = useState("");
   const [showModal, setShowModal] = useState(false);
+
+  const { login } = useAuth(); // ⬅️ pour stocker l’utilisateur
+  const navigate = useNavigate(); // ⬅️ pour redirection
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3310";
 
@@ -24,9 +29,13 @@ export default function SignupForm() {
       const data = await res.json();
 
       if (res.ok) {
-        // Stocker le prénom dans localStorage
-        localStorage.setItem("firstName", firstName);
+        // ✅ Stocker l'utilisateur dans le contexte auth
+        login({
+          email,
+          firstName,
+        });
 
+        // ✅ Afficher le modal et vider le formulaire
         setShowModal(true);
         setFirstName("");
         setLastName("");
@@ -34,8 +43,9 @@ export default function SignupForm() {
         setPassword("");
         setResponseMsg("");
 
+        // ✅ Rediriger vers le Dashboard après quelques secondes
         setTimeout(() => {
-          window.location.href = "/dashboard";
+          navigate("/dashboard");
         }, 3000);
       } else {
         setResponseMsg(data);

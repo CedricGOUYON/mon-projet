@@ -6,6 +6,12 @@ body {
   background-color: #008080;
   color: white;
 }
+
+main {
+  max-width: 80%;
+  margin: auto;
+}
+
 :root {
   --primary-color: #008080;
 }

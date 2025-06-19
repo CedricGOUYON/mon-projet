@@ -20,19 +20,19 @@ const LoginForm: React.FC = () => {
       });
 
       const data = await response.json();
+      console.log("Réponse login:", data);
 
       if (!response.ok) {
         alert(data.message || "Erreur de connexion.");
         return;
       }
 
-      // ✅ On enregistre l’utilisateur dans le contexte
+      // Mise à jour du contexte utilisateur
       login({
         email: data.email,
         firstName: data.firstName,
       });
 
-      // ✅ On redirige vers le dashboard
       navigate("/dashboard");
     } catch (error) {
       console.error("Erreur serveur :", error);

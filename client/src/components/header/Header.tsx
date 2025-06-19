@@ -1,29 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import "./Header.css";
 
 const Header: React.FC = () => {
   const { user, logout } = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header style={{ padding: "1rem", backgroundColor: "#f2f2f2" }}>
-      <nav style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div>
-          {user ? (
-            <>
-              <span style={{ marginRight: "1rem" }}>Bonjour, {user.firstName || user.email} !</span>
-              <button onClick={logout}>Déconnexion</button>
-            </>
-          ) : (
-            <span>Vous n'êtes pas connecté.</span>
-          )}
+    <header className="header">
+      <nav className="nav">
+        <div className="nav-top">
+          <button className="burger" onClick={() => setMenuOpen(!menuOpen)}>
+            ☰
+          </button>
+          {user ? <span className="user-name">Bonjour, {user.firstName || user.email} !</span> : <span className="not-connected">Vous n'êtes pas connecté.</span>}
         </div>
-        <div>
-          <Link to="/">Accueil</Link> | <Link to="/dashboard">Dashboard</Link> | <Link to="/cards">Cartes</Link> | <Link to="/rick">Rick & Morty</Link> |{" "}
+
+        <div className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <Link to="/" onClick={() => setMenuOpen(false)}>
+            Accueil
+          </Link>
+          <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+            Dashboard
+          </Link>
+          <Link to="/cards" onClick={() => setMenuOpen(false)}>
+            Cartes
+          </Link>
+          <Link to="/rick" onClick={() => setMenuOpen(false)}>
+            Rick & Morty
+          </Link>
           {!user && (
             <>
-              <Link to="/login">Connexion</Link> | <Link to="/signup">Inscription</Link>
+              <Link to="/login" onClick={() => setMenuOpen(false)}>
+                Connexion
+              </Link>
+              <Link to="/signup" onClick={() => setMenuOpen(false)}>
+                Inscription
+              </Link>
             </>
+          )}
+          {user && (
+            <button
+              className="logout-button"
+              onClick={() => {
+                logout();
+                setMenuOpen(false);
+              }}
+            >
+              Déconnexion
+            </button>
           )}
         </div>
       </nav>
