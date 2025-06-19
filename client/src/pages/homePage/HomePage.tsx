@@ -1,11 +1,12 @@
-import "./HomePage.css";
+import React from "react";
 
-function HomePage() {
+const HomePage: React.FC = () => {
   return (
-    <>
-      <h1>HomePage</h1>
-    </>
+    <div>
+      <h1>Bienvenue sur la page d’accueil !</h1>
+      <p>Ceci est la HomePage.</p>
+    </div>
   );
-}
+};
 
 export default HomePage;

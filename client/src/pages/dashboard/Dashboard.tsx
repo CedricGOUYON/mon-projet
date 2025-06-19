@@ -1,20 +1,14 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import { useAuth } from "../../contexts/AuthContext";
 
-function Dashboard() {
-  const [firstName, setFirstName] = useState("");
-
-  useEffect(() => {
-    const storedFirstName = localStorage.getItem("firstName");
-    if (storedFirstName) {
-      setFirstName(storedFirstName);
-    }
-  }, []);
+const Dashboard: React.FC = () => {
+  const { user } = useAuth();
 
   return (
-    <>
-      <h1>Bonjour {firstName || "cher utilisateur"} !</h1>
-    </>
+    <div>
+      <h1>Bienvenue {user?.firstName ?? "utilisateur"} !</h1>
+    </div>
   );
-}
+};
 
 export default Dashboard;

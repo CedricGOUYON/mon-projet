@@ -46,7 +46,7 @@ export default function SignupForm() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "auto" }}>
+    <div className="signup-container">
       <h2>Créer un compte</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="firstName">Prénom :</label>
@@ -64,31 +64,11 @@ export default function SignupForm() {
         <button type="submit">Créer un compte</button>
       </form>
 
-      {responseMsg && <p style={{ color: "red" }}>{responseMsg}</p>}
+      {responseMsg && <p className="error-msg">{responseMsg}</p>}
 
       {showModal && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div
-            style={{
-              background: "white",
-              padding: "20px",
-              borderRadius: "8px",
-              boxShadow: "0 0 10px rgba(0,0,0,0.3)",
-              textAlign: "center",
-            }}
-          >
+        <div className="modal-overlay">
+          <div className="modal-content">
             <h3>Votre compte a été créé avec succès !</h3>
             <p>Redirection en cours...</p>
             <button onClick={() => setShowModal(false)}>Fermer</button>

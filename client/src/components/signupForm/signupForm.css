@@ -1,114 +1,89 @@
-/* Thème Zoo 🌿 */
 .signup-container {
-  max-width: 400px;
-  margin: 2rem auto;
-  font-family: "Trebuchet MS", sans-serif;
-  background: #fffaf0;
-  border: 3px solid #c2b280; /* couleur sable */
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
   padding: 2rem;
-  background-image: url("/assets/zebra-stripes.svg"); /* un fond subtil si tu veux ajouter une touche "animal" */
-  background-size: cover;
-
-  h2 {
-    text-align: center;
-    color: #4c3b17; /* brun safari */
-    margin-bottom: 1.5rem;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-
-    label {
-      margin-top: 1rem;
-      margin-bottom: 0.25rem;
-      font-weight: bold;
-      color: #2e2e1f;
-    }
-
-    input {
-      padding: 0.75rem;
-      border: 1px solid #bdb76b;
-      border-radius: 8px;
-      background-color: #fff8dc;
-      transition: 0.3s;
-
-      &:focus {
-        outline: none;
-        border-color: #8fbc8f;
-        background-color: #f0fff0;
-      }
-    }
-
-    button[type="submit"] {
-      margin-top: 2rem;
-      padding: 0.75rem;
-      background-color: #228b22;
-      color: white;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background-color: #2e8b57;
-      }
-    }
-  }
-
-  p {
-    color: red;
-    text-align: center;
-    margin-top: 1rem;
-  }
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 3rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Modal Zoo 🐘 */
+.signup-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.signup-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-container label {
+  margin-bottom: 0.3rem;
+  color: #555;
+  font-weight: 600;
+}
+
+.signup-container input {
+  padding: 0.5rem;
+  margin-bottom: 1.2rem;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.signup-container input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.signup-container button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+.signup-container button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.error-msg {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: red;
+  text-align: center;
+}
+
+/* Modal Styles */
+
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(34, 49, 63, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
+
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
+}
 
-  .modal-content {
-    background-color: #fdf5e6;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-
-    h3 {
-      color: #006400;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      margin-bottom: 1rem;
-      color: #333;
-    }
-
-    button {
-      padding: 0.5rem 1.2rem;
-      background-color: #8b4513;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-
-      &:hover {
-        background-color: #a0522d;
-      }
-    }
-  }
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }

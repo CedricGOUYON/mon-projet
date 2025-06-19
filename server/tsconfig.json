@@ -7,7 +7,13 @@
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true, // Evite les soucis liés à la casse sur différents OS
+    "resolveJsonModule": true, // Permet d'importer les fichiers JSON
+    "noImplicitAny": true, // Plus de sécurité sur les types any implicites
+    "noUnusedLocals": true, // Warning pour variables inutilisées
+    "noUnusedParameters": true // Warning pour paramètres inutilisés
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"] // Exclure le dossier de build
 }

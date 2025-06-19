@@ -4,6 +4,7 @@
 body {
   margin: 0;
   background-color: #008080;
+  color: white;
 }
 :root {
   --primary-color: #008080;
