@@ -73,10 +73,10 @@ app.use("/api", router);
 
 // Middleware global de gestion des erreurs
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error("💥 ERREUR SERVEUR:", err);
+  console.error("ERREUR SERVEUR:", err);
   res.status(500).json({ error: "Erreur serveur interne" });
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Backend lancé sur http://localhost:${PORT}`);
+  console.log(`Server lancé sur http://localhost:${PORT}`);
 });

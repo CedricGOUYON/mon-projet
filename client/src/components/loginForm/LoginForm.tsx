@@ -6,7 +6,6 @@ export default function LoginForm() {
   const [responseMsg, setResponseMsg] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  // IMPORTANT : enlever le `/api` ici car l’URL backend contient déjà `/api`
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3310";
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,11 +21,8 @@ export default function LoginForm() {
       const data = await res.json();
 
       if (res.ok) {
-        if (data.firstName) {
-          localStorage.setItem("firstName", data.firstName);
-        } else {
-          localStorage.setItem("firstName", "utilisateur");
-        }
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("firstName", data.firstName || "utilisateur");
 
         setShowModal(true);
         setEmail("");

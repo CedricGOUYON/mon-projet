@@ -1,4 +1,4 @@
-import { databaseClient } from "../../database/clients"; // ✅ Import nommé
+import { databaseClient } from "../../database/clients";
 
 interface User {
   id: number;

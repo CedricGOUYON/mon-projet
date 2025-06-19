@@ -39,7 +39,7 @@ export default function CardsPage() {
   const handleDelete = async (id: number) => {
     try {
       await deleteImage(id);
-      // Si l’image supprimée est celle affichée en détail, la désélectionner
+
       if (selectedImage?.id === id) setSelectedImage(null);
       fetchImages();
     } catch (err) {
@@ -56,7 +56,6 @@ export default function CardsPage() {
     }
   };
 
-  // Filtrer les images affichées selon le champ filter
   const filteredImages = filter ? images.filter((img) => img.name.toLowerCase().includes(filter.toLowerCase())) : images;
 
   return (
@@ -69,12 +68,10 @@ export default function CardsPage() {
         <button onClick={handleAdd}>Ajouter</button>
       </div>
 
-      {/* Champ pour filtrer les cards */}
       <div style={{ margin: "1rem 0" }}>
         <input type="text" placeholder="Filtrer par nom" value={filter} onChange={(e) => setFilter(e.target.value)} />
       </div>
 
-      {/* Affichage de la card sélectionnée */}
       {selectedImage && (
         <div className="selected">
           <h2>{selectedImage.name}</h2>
@@ -82,7 +79,6 @@ export default function CardsPage() {
         </div>
       )}
 
-      {/* Liste des images filtrées */}
       <div className="cards-grid">
         {filteredImages.map((img) => (
           <ImageCard key={img.id} image={img} onDelete={handleDelete} onRead={handleRead} />

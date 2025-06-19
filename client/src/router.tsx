@@ -6,7 +6,7 @@ import SignupPage from "./pages/signupPage/SignupPage";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
 import Dashboard from "./pages/dashboard/Dashboard";
 import CardsPage from "./pages/CardsPage/CardsPage";
-
+import RickAndMortyPage from "./pages/rickAndMorty/RickAndMortyPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,6 +18,7 @@ const router = createBrowserRouter([
       { path: "dashboard", element: <Dashboard /> },
       { path: "signup", element: <SignupPage /> },
       { path: "/cards", element: <CardsPage /> },
+      { path: "/rick", element: <RickAndMortyPage /> },
     ],
   },
 ]);

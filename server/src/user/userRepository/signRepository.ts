@@ -1,4 +1,4 @@
-import { databaseClient } from "../../database/clients"; // ✅ Import nommé
+import { databaseClient } from "../../database/clients";
 
 class UserRepository {
   async create(body: { firstName: string; lastName: string; email: string; password: string }) {
